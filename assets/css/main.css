@@ -8187,32 +8187,52 @@ div[class*="position"] .details .area {
   .value-strip__row { flex-wrap: wrap; }
   .value-strip__item { flex: 1 1 calc(50% - 1px); border-bottom: 0.5px solid var(--warm-tan); }
 }
-/*Why We Exist on Home Page*/
-/* Why We Exist Section Container - Now an off-white anchor zone */
+/* Why We Exist Section Container - Full-width bleed layout */
+/* Why We Exist Section Container - Standard centered container with full-bleed background paint */
 .organisation-overview-row {
   display: flex;
   flex-direction: row;
-  gap: 24px; /* Increased slightly for better breathing room/cognitive ease */
+  gap: 24px; /* Space between cards */
+  padding: 3rem 0; /* Vertical breathing room; horizontal padding is handled by the container layout */
+  
+  /* 1. Reset alignment: Let Bootstrap center the container naturally */
+  position: relative;
   width: 100%;
-  padding: 3rem 2rem; /* Increased vertical padding to distinguish the zone */
-  background-color: #F4F7F9; /* Off-white / Soft grey-blue background to break up white space */
-  border-radius: 12px; /* Smooths out the zone boundaries */
+  
+  /* 2. Style & Tone layer spacing */
+  box-sizing: border-box;
 }
 
-/* Individual Cards - Lifts cleanly off the off-white background */
+/* The Fix: Paints the grey background edge-to-edge behind the scenes without breaking card alignment */
+.organisation-overview-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  
+  /* Forces the grey background block to stretch to the screen edges */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  
+  background-color: #F4F7F9; /* Off-white zone background */
+  z-index: -1; /* Placed safely behind the cards */
+}
+
+/* Individual Cards - Keeps their inner sizing, layout, and paddings exactly intact */
 .organisation-overview-card {
   flex: 1;
-  background: #ffffff; /* Crisp, clean white container */
-  border: 1px solid rgba(55, 129, 137, 0.1); /* Subtle, branded border instead of stark grey */
-  border-radius: 12px; /* Softer, friendlier corners for an approachable care-centric UI */
-  padding: 2rem; /* Increased internal breathing room for text scanning */
+  background: #ffffff; 
+  border: 1px solid rgba(55, 129, 137, 0.1); 
+  border-radius: 12px; 
+  padding: 2rem; 
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 20px rgba(11, 37, 64, 0.05); /* Soft, natural depth shadow */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover transition */
+  box-shadow: 0 4px 20px rgba(11, 37, 64, 0.05); 
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
 }
 
-/* Micro-interaction: Subtle lift effect on hover to guide sight lines */
+/* Micro-interaction: Subtle lift effect on hover */
 .organisation-overview-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(55, 129, 137, 0.1);
@@ -8223,7 +8243,7 @@ div[class*="position"] .details .area {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  background: #378189; /* Your core brand teal */
+  background: #378189; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8231,20 +8251,20 @@ div[class*="position"] .details .area {
 }
 
 .organisation-overview-card__icon-circle i {
-  font-size: 26px; /* Sized down slightly for elegant proportions */
+  font-size: 26px; 
   color: #fff; 
 }
 
-/* Headings - Accessible, clear color matching your brand */
+/* Headings */
 .organisation-overview-card__heading {
   color: #378189; 
-  font-size: 1.4rem; /* Ensures clear typographic hierarchy */
+  font-size: 1.4rem; 
   font-weight: 700;
   margin: 0 0 16px; 
   text-align: center; 
 }
 
-/* Description Text - Swapped harsh #000 to softer, accessible #2D3748 charcoal */
+/* Description Text - Soft slate-charcoal for accessibility */
 .organisation-overview-card__short-description {
   color: #2D3748; 
   font-size: 15px;
@@ -8260,7 +8280,7 @@ div[class*="position"] .details .area {
   flex: 1; 
 }
 
-/* Lists formatting for "Who We Support" to ensure text doesn't look squeezed */
+/* Lists formatting for "Who We Support" */
 .organisation-overview-card ol {
   padding-left: 20px;
   margin-bottom: 18px;
@@ -8285,7 +8305,6 @@ div[class*="position"] .details .area {
   padding: 4px 0;
 }
 
-/* Adding an absolute indicator for keyboard focus accessibility */
 .organisation-overview-card__read-more-link:focus-visible {
   outline: 3px solid #378189;
   outline-offset: 4px;
@@ -8302,6 +8321,11 @@ div[class*="position"] .details .area {
     flex-direction: column; 
     gap: 20px; 
     padding: 2rem 1rem;
+    /* Re-evaluate width slightly on small mobile viewports to prevent layout tracking bugs */
+    width: auto;
+    position: static;
+    margin-left: 0;
+    margin-right: 0;
   }
   .organisation-overview-card { 
     width: 100%; 
