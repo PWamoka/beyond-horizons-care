@@ -8188,47 +8188,125 @@ div[class*="position"] .details .area {
   .value-strip__item { flex: 1 1 calc(50% - 1px); border-bottom: 0.5px solid var(--warm-tan); }
 }
 /*Why We Exist on Home Page*/
+/* Why We Exist Section Container - Now an off-white anchor zone */
 .organisation-overview-row {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    width: 100%;
-    padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 24px; /* Increased slightly for better breathing room/cognitive ease */
+  width: 100%;
+  padding: 3rem 2rem; /* Increased vertical padding to distinguish the zone */
+  background-color: #F4F7F9; /* Off-white / Soft grey-blue background to break up white space */
+  border-radius: 12px; /* Smooths out the zone boundaries */
 }
 
+/* Individual Cards - Lifts cleanly off the off-white background */
 .organisation-overview-card {
   flex: 1;
-  background: #fff;
-  border: 0.5px solid #e0e0e0;
-  border-radius: 5px;
-  padding: 1.25rem;
+  background: #ffffff; /* Crisp, clean white container */
+  border: 1px solid rgba(55, 129, 137, 0.1); /* Subtle, branded border instead of stark grey */
+  border-radius: 12px; /* Softer, friendlier corners for an approachable care-centric UI */
+  padding: 2rem; /* Increased internal breathing room for text scanning */
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 20px rgba(11, 37, 64, 0.05); /* Soft, natural depth shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover transition */
 }
 
+/* Micro-interaction: Subtle lift effect on hover to guide sight lines */
+.organisation-overview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(55, 129, 137, 0.1);
+}
+
+/* Brand Icon Circle */
 .organisation-overview-card__icon-circle {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  background: #378189;
+  background: #378189; /* Your core brand teal */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 14px; /* Changed 'margin-bottom' to '0 auto 14px' to center the circle horizontally */
+  margin: 0 auto 18px; 
 }
 
-.organisation-overview-card__icon-circle i {font-size: 30px; color: #fff; }
-.organisation-overview-card__heading {color: #378189; 
-  margin: 0 0 8px; 
-  text-align: center; /* Explicitly centers just the heading */}
-  .organisation-overview-card__short-description {color: #000; line-height: 1.6; margin: 0 0 14px; }
-  .organisation-overview-card__full-description { color: #000; line-height: 1.65; margin: 0 0 18px; flex: 1; }
-  .organisation-overview-card__read-more-link { display: inline-flex; align-items: center; gap: 6px; font-size: 16px; font-weight: bold; color: #378189; margin-top: auto; }
+.organisation-overview-card__icon-circle i {
+  font-size: 26px; /* Sized down slightly for elegant proportions */
+  color: #fff; 
+}
 
-/* Mobile — stack vertically */
-@media (max-width: 640px) {
-  .organisation-overview-row { flex-direction: column; gap: 12px; }
-  .organisation-overview-card { width: 100%; }
+/* Headings - Accessible, clear color matching your brand */
+.organisation-overview-card__heading {
+  color: #378189; 
+  font-size: 1.4rem; /* Ensures clear typographic hierarchy */
+  font-weight: 700;
+  margin: 0 0 16px; 
+  text-align: center; 
+}
+
+/* Description Text - Swapped harsh #000 to softer, accessible #2D3748 charcoal */
+.organisation-overview-card__short-description {
+  color: #2D3748; 
+  font-size: 15px;
+  line-height: 1.6; 
+  margin: 0 0 14px; 
+}
+
+.organisation-overview-card__full-description { 
+  color: #2D3748; 
+  font-size: 15px;
+  line-height: 1.65; 
+  margin: 0 0 18px; 
+  flex: 1; 
+}
+
+/* Lists formatting for "Who We Support" to ensure text doesn't look squeezed */
+.organisation-overview-card ol {
+  padding-left: 20px;
+  margin-bottom: 18px;
+  color: #2D3748;
+}
+
+.organisation-overview-card ol li {
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+/* "Read More" Interactive Links */
+.organisation-overview-card__read-more-link { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 6px; 
+  font-size: 16px; 
+  font-weight: 700; 
+  color: #378189; 
+  margin-top: auto; 
+  text-decoration: none;
+  padding: 4px 0;
+}
+
+/* Adding an absolute indicator for keyboard focus accessibility */
+.organisation-overview-card__read-more-link:focus-visible {
+  outline: 3px solid #378189;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.organisation-overview-card__read-more-link:hover {
+  text-decoration: underline;
+}
+
+/* Mobile responsive alignment overrides */
+@media (max-width: 768px) {
+  .organisation-overview-row { 
+    flex-direction: column; 
+    gap: 20px; 
+    padding: 2rem 1rem;
+  }
+  .organisation-overview-card { 
+    width: 100%; 
+    padding: 1.5rem;
+  }
 }
 
 /* Services Section Container */
