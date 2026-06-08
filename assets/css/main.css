@@ -7855,34 +7855,162 @@ div[class*="position"] .details .area {
   background: #00e676;
 }
 
-/*Fading Effect onto the DIVS*/
-.hero-gradient-section {position: relative;}
+/*HERO Section*/
+/* Hero Section Parent Element */
+.hero-gradient-section {
+  position: relative;
+  background-color: #164448; /* Deep-shade variant of your brand teal (#29797F) */
+  overflow: hidden;
+}
 
-.hero-gradient-section::before {content: '';position: absolute;top: 0;left: 0;width: 80%;height: 100%;background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 100%); pointer-events: none; z-index: 0;}
+/* Official Brand Teal Desktop Fading Effect Overlay - FIXED TRANSITION */
+.hero-gradient-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75%; 
+  height: 100%;
+  /* Fades smoothly from your solid deep brand teal into full transparency */
+  background: linear-gradient(to right, 
+    rgba(22, 68, 72, 1) 0%, 
+    rgba(34, 91, 96, 0.95) 50%, 
+    rgba(41, 121, 127, 0) 100%
+  ); 
+  pointer-events: none; 
+  z-index: 1;
+}
 
+/* Ensures content stacks properly above the background mask tint */
 .hero-gradient-section .container {
   position: relative;
   z-index: 2;
 }
 
-@media (max-width: 576px) {
-  .hero-gradient-section::before {
-    display: none;
+/* ==========================================================================
+   Hero Isolated Buttons Style Grid
+   ========================================================================== */
+
+/* Base reset for both hero buttons to ensure high-contrast visibility */
+.custom-button.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 30px; /* Friendly, approachable rounded edges */
+  transition: all 0.25s ease-in-out;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.hero-gradient-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Button 1: "Get Support" — Primary Brand Gold Action Style */
+.custom-button.hero-btn:not(.active) {
+  background-color: #D59A40; /* Your official brand Gold accent */
+  color: #164448; /* Deep dark teal for maximum text contrast legibility */
+  border: 2px solid #D59A40;
+}
+
+.custom-button.hero-btn:not(.active):hover {
+  background-color: #f1b35a; /* Slightly brighter gold tint on hover */
+  border-color: #f1b35a;
+  transform: translateY(-2px); /* Subtle physical lift */
+  box-shadow: 0 6px 16px rgba(213, 154, 64, 0.3);
+}
+
+/* Button 2: "Make a Referral" — Clean Outlined White Contrast Style */
+.custom-button.active.hero-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.custom-button.active.hero-btn:hover {
+  background-color: #ffffff;
+  color: #164448; /* Flips color cleanly for premium feedback interaction */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+/* Accessibility Focus States — Crucial for keyboard/screen-reader navigation */
+.custom-button.hero-btn:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+/*Hero Section*/
+
+/* ==========================================================================
+   Accessible Branding Typography (WCAG 2.1 AA Compliant on Dark Teal)
+   ========================================================================== */
+
+/* Main Header Title */
+#section-title {
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 2.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Tagline - Your Official Gold Accent (#D59A40) */
+.hero-tagline-gold {
+  color: #D59A40 !important; 
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Secondary Tagline - A clear, accessible soft cyan-teal tint */
+.hero-tagline-teal {
+  color: #D59A40 !important; 
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Main Body Paragraphs */
+.hero-description {
+  color: #F8FAFC !important; 
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* Bold Callouts within descriptions */
+.highlight-gold {
+  color: #D59A40;
+  font-weight: 700;
+}
+
+/* Bottom Trust Indicators */
+.hero-footer-text {
+  color: #E2E8F0 !important;
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   Responsive Mobile Fallbacks
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-gradient-section::before {
+    width: 100%;
+    background: linear-gradient(to bottom, 
+      rgba(22, 68, 72, 0.96) 0%, 
+      rgba(34, 91, 96, 0.85) 100%
+    );
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-gradient-section::before {
+    display: block;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.93);
-    pointer-events: none;
-    z-index: 1;
+    background-color: rgba(22, 68, 72, 0.93); 
+  }
 }
-}
-#section-title{color:#378189 !important;}
+
+
+#section-title{color:#fff !important;}
 .tpf-wrapper {
   display: flex;
   width: 100%;
