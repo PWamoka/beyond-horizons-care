@@ -8316,121 +8316,160 @@ div[class*="position"] .details .area {
   .value-strip__item { flex: 1 1 calc(50% - 1px); border-bottom: 0.5px solid var(--warm-tan); }
 }
 /* Why We Exist Section Container - Full-width bleed layout */
-/* Why We Exist Section Container - Standard centered container with full-bleed background paint */
+
 .organisation-overview-row {
   display: flex;
   flex-direction: row;
-  gap: 24px; /* Space between cards */
-  padding: 3rem 0; /* Vertical breathing room; horizontal padding is handled by the container layout */
-  
-  /* 1. Reset alignment: Let Bootstrap center the container naturally */
+  gap: 24px; 
+  padding: 2.5rem 0; 
   position: relative;
   width: 100%;
-  
-  /* 2. Style & Tone layer spacing */
   box-sizing: border-box;
 }
 
-/* The Fix: Paints the grey background edge-to-edge behind the scenes without breaking card alignment */
+/* Accessible background canvas */
 .organisation-overview-row::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  
-  /* Forces the grey background block to stretch to the screen edges */
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  
-  background-color: #F4F7F9; /* Off-white zone background */
-  z-index: -1; /* Placed safely behind the cards */
+  background-color: #FBF9F4; /* Off-white teal tint reduces ocular fatigue */
+  z-index: -1; 
 }
 
-/* Individual Cards - Keeps their inner sizing, layout, and paddings exactly intact */
+/* Individual Service Cards - Premium Accessibility Block */
 .organisation-overview-card {
   flex: 1;
   background: #ffffff; 
-  border: 1px solid rgba(55, 129, 137, 0.1); 
-  border-radius: 12px; 
-  padding: 2rem; 
+  border: 1.5px solid rgba(55, 129, 137, 0.2); /* Thickened border border-width for enhanced low-vision boundaries */
+  border-radius: 16px; 
+  padding: 2rem 1.75rem; 
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 20px rgba(11, 37, 64, 0.05); 
-  transition: transform 0.2s ease, box-shadow 0.2s ease; 
+  align-items: flex-start; /* Crucial left alignment for reading disorder processing */
+  box-shadow: 0 4px 15px rgba(22, 58, 62, 0.04); 
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.2s ease;
 }
 
-/* Micro-interaction: Subtle lift effect on hover */
+/* Interaction feedback track */
 .organisation-overview-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(55, 129, 137, 0.1);
+  box-shadow: 0 10px 24px rgba(22, 58, 62, 0.08);
+  border-color: #378189; /* Highlights clearly with brand teal */
 }
 
-/* Brand Icon Circle */
+/* High-Contrast Large Icon Circles */
 .organisation-overview-card__icon-circle {
-  width: 55px;
-  height: 55px;
+  width: 68px; /* Enlarged layout size ensures fast shape recognition */
+  height: 68px;
   border-radius: 50%;
-  background: #378189; 
+  background: #378189; /* Official Brand Teal */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 18px; 
+  margin-bottom: 1.25rem; 
+  align-self: center; /* Keeps the visual anchor neatly centered */
+  transition: transform 0.2s ease;
 }
 
 .organisation-overview-card__icon-circle i {
-  font-size: 26px; 
-  color: #fff; 
+  font-size: 30px; 
+  color: #ffffff; 
 }
 
-/* Headings */
+.organisation-overview-card:hover .organisation-overview-circle {
+  transform: scale(1.06);
+}
+
+/* Headings - Upgraded semantic weight */
 .organisation-overview-card__heading {
-  color: #378189; 
-  font-size: 1.4rem; 
-  font-weight: 700;
-  margin: 0 0 16px; 
+  color: #163A3E; /* High contrast deep variant of brand teal */
+  font-size: 1.45rem; 
+  font-weight: 800;
+  margin: 0 0 1.25rem 0; 
   text-align: center; 
+  width: 100%; /* Keeps alignment crisp across elements */
 }
 
-/* Description Text - Soft slate-charcoal for accessibility */
-.organisation-overview-card__short-description {
-  color: #2D3748; 
+/* Short & Full Descriptions - Balanced color variables for glare protection */
+.organisation-overview-card__short-description,
+.organisation-overview-card__full-description {
+  color: #1A252C; /* Deep slate alternative to hard blacks; satisfies severe contrast criteria */
   font-size: 15px;
-  line-height: 1.6; 
-  margin: 0 0 14px; 
+  line-weight: 1.6; 
+  margin: 0 0 1rem 0;
+  text-align: left !important;
 }
 
-.organisation-overview-card__full-description { 
-  color: #2D3748; 
+.organisation-overview-card__label-heading {
+  color: #163A3E;
+  font-weight: 700;
   font-size: 15px;
-  line-height: 1.65; 
-  margin: 0 0 18px; 
-  flex: 1; 
+  margin: 1.25rem 0 0.5rem 0;
 }
 
-/* Lists formatting for "Who We Support" */
-.organisation-overview-card ol {
+/* Scannable Content Highlights */
+.highlight-term {
+  color: #163A3E;
+  font-weight: 700;
+}
+
+/* Standardized Custom Lists Formatting */
+.organisation-overview-card__list {
   padding-left: 20px;
-  margin-bottom: 18px;
-  color: #2D3748;
+  margin-bottom: 1rem;
+  color: #1A252C;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Spatial spacing buffer targets screen layout line jump errors */
 }
 
-.organisation-overview-card ol li {
-  margin-bottom: 6px;
-  font-size: 15px;
+.organisation-overview-card__list li {
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #2D3A42;
 }
 
-/* "Read More" Interactive Links */
+/* "Read More" Large Interactive Anchor Elements */
 .organisation-overview-card__read-more-link { 
   display: inline-flex; 
   align-items: center; 
-  gap: 6px; 
-  font-size: 16px; 
+  gap: 8px; 
+  font-size: 15px; 
   font-weight: 700; 
   color: #378189; 
   margin-top: auto; 
+  padding: 8px 0; /* Expanded touch click target domain */
   text-decoration: none;
-  padding: 4px 0;
+  transition: color 0.2s ease;
+  align-self: center; /* Balanced position tracking anchor button */
+}
+
+.organisation-overview-card__read-more-link i {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate directional indicator when bootstrap collapse activates */
+.organisation-overview-card__read-more-link[aria-expanded="true"] i {
+  transform: rotate(180deg);
+}
+
+.organisation-overview-card__read-more-link:hover {
+  color: #163A3E;
+  text-decoration: underline;
+}
+
+/* Clear, bold focus tracking bounds for physical keyboards and adaptive choice trackers */
+.organisation-overview-card:focus-within {
+  outline: 3px solid #378189;
+  outline-offset: 4px;
 }
 
 .organisation-overview-card__read-more-link:focus-visible {
@@ -8439,21 +8478,28 @@ div[class*="position"] .details .area {
   border-radius: 4px;
 }
 
-.organisation-overview-card__read-more-link:hover {
-  text-decoration: underline;
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1140px) {
+  .organisation-overview-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .organisation-overview-card {
+    flex: 0 1 calc(50% - 10px); /* Adjusts gracefully into 2-columns on smaller laptop monitors */
+    min-width: 320px;
+  }
 }
 
-/* Mobile responsive alignment overrides */
 @media (max-width: 768px) {
   .organisation-overview-row { 
     flex-direction: column; 
-    gap: 20px; 
-    padding: 2rem 1rem;
-    /* Re-evaluate width slightly on small mobile viewports to prevent layout tracking bugs */
-    width: auto;
-    position: static;
-    margin-left: 0;
-    margin-right: 0;
+    gap: 16px; 
+    padding: 1.5rem 0;
+    width: 100%;
   }
   .organisation-overview-card { 
     width: 100%; 
@@ -8461,161 +8507,323 @@ div[class*="position"] .details .area {
   }
 }
 
-/* Services Section Container */
+
+/* ==========================================================================
+   Accessibility Patch: Vestibular & Motion Reduction Media Queries
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* 1. Global Reset Safeties */
+  *,
+  *::before,
+  *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: scroll !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* 2. Services Section Motion Reduction */
+  .service-card {
+    transition: border-color 0.1s ease, box-shadow 0.1s ease !important; /* Strips transform timing */
+  }
+
+  .service-card:hover {
+    transform: none !important; /* Prevents card lifting up */
+    box-shadow: 0 4px 15px rgba(42, 120, 127, 0.08) !important; /* Direct, static hover depth swap */
+  }
+
+  .service-card__icon-badge {
+    transition: none !important;
+  }
+
+  .service-card:hover .service-card__icon-badge {
+    transform: none !important; /* Prevents the circular icon badge scale pulse */
+  }
+
+  .services-custom-button,
+  .services-custom-button i {
+    transition: none !important;
+    transform: none !important; /* Prevents button lift and arrow shift on hover */
+  }
+
+  /* 3. Organisation Overview Motion Reduction */
+  .organisation-overview-card {
+    transition: border-color 0.1s ease, box-shadow 0.1s ease !important;
+  }
+
+  .organisation-overview-card:hover {
+    transform: none !important; /* Blocks vertical translate lifts */
+    box-shadow: 0 4px 20px rgba(11, 37, 64, 0.08) !important;
+  }
+
+  .organisation-overview-card__icon-circle,
+  .organisation-overview-card__read-more-link i,
+  .organisation-overview-card__read-more-link span {
+    transition: none !important;
+    transform: none !important; /* Strips icon pops and chevron spin animations */
+  }
+
+  /* 4. Bootstrap Collapse Structural Snapping */
+  .collapse {
+    transition: none !important; /* Forces accordion panels to snap open/closed instantly without animated sliding */
+  }
+}
+/* Why We Exist Section Container - Full-width bleed layout */
+
+
+
+/*Our Services Cards*/
+/* ==========================================================================
+   Services Section Container - 10-Second Attention Retention Engine
+   ========================================================================== */
+
+/* Main Section Wrapper */
 .services-section {
-  background: var(--warm-cream, #f9f6f0); /* Uses cream background seen in services.JPG */
-  padding: 3rem 1.5rem;
+  background-color: #F4F7F8; 
+  padding: 2.5rem 0; 
+  box-sizing: border-box;
+  overflow-x: hidden; 
 }
 
+/* Section Title */
 .services-section__title {
-  text-align: center;
-  color: var(--text-dark, #000);
-  margin-bottom: 1rem;
-  font-weight: bold;
+  text-align: center !important;
+  color: #164448; /* Deep variant of your official brand teal */
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 0;
+  margin-bottom: 2rem; 
+  width: 100%;
 }
 
 /* Flexbox Row Container */
 .services-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap; 
+  gap: 16px; 
   width: 100%;
-  max-width: 1200px;
+  max-width: 1350px; 
   margin: 0 auto;
-  gap: 0; /* Handled by fine borders instead of gaps */
+  box-sizing: border-box;
 }
 
-/* Individual Columns */
+/* Individual Service Cards */
 .service-card {
-  flex: 1;
-  padding: 1.5rem 1.25rem;
+  flex: 1; 
+  min-width: 0; 
+  background: #ffffff; 
+  border: 1px solid rgba(42, 120, 127, 0.1); 
+  border-radius: 16px; 
+  padding: 1.75rem 1.15rem; 
   display: flex;
   flex-direction: column;
-  background: transparent;
-  border-right: 0.5px solid var(--warm-tan, #e0dcd3); /* Thin vertical dividers */
+  align-items: center; 
+  box-shadow: 0 4px 12px rgba(22, 68, 72, 0.03); 
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.25s ease;
 }
 
-/* Remove border on the last card */
-.service-card:last-child {
-  border-right: none;
+/* Hover Interactive Action */
+.service-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 12px 24px rgba(22, 68, 72, 0.08); 
 }
 
-/* Centered Top Elements */
-.service-card__icon {
-  font-size: 40px; 
-  color: var(--green-mid, #378189);
-  text-align: center;
-  margin-bottom: 1rem;
+/* Centralized Icon Badges Base */
+.service-card__icon-badge {
+  width: 68px;          /* ENLARGED: Increased from 54px for stronger visual anchoring */
+  height: 68px;         /* ENLARGED: Increased from 54px */
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;      /* ENLARGED: Increased from 22px so the icon jumps out immediately */
+  margin-bottom: 1.5rem; /* Slightly more breathing room below the larger badge */
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
+/* Micro-interaction: Engaging scale pulse when the user's mouse handles over the card */
+.service-card:hover .service-card__icon-badge {
+  transform: scale(1.12); /* Pronounced pop effect to guide focal tracking */
+}
+
+/* ==========================================================================
+   Color Psychology Matrix (Instant Visual Differentiation)
+   ========================================================================== */
+
+/* Card 1: Support (Warm Sunset Orange Link) */
+.scheme-orange .service-card__icon-badge { background-color: rgba(229, 124, 35, 0.1); color: #E57C23; }
+.scheme-orange:hover { border-color: #E57C23; }
+.scheme-orange:hover .service-card__icon-badge { background-color: #E57C23; color: #fff; }
+
+/* Card 2: Daily Living (Your Official Brand Teal) */
+.scheme-teal .service-card__icon-badge { background-color: rgba(42, 120, 127, 0.1); color: #2A787F; }
+.scheme-teal:hover { border-color: #2A787F; }
+.scheme-teal:hover .service-card__icon-badge { background-color: #2A787F; color: #fff; }
+
+/* Card 3: Accommodation (Trust Blue Variant) */
+.scheme-blue .service-card__icon-badge { background-color: rgba(41, 128, 185, 0.1); color: #2980B9; }
+.scheme-blue:hover { border-color: #2980B9; }
+.scheme-blue:hover .service-card__icon-badge { background-color: #2980B9; color: #fff; }
+
+/* Card 4: Clinical (Therapeutic Purple Lavender) */
+.scheme-purple .service-card__icon-badge { background-color: rgba(142, 68, 173, 0.1); color: #8E44AD; }
+.scheme-purple:hover { border-color: #8E44AD; }
+.scheme-purple:hover .service-card__icon-badge { background-color: #8E44AD; color: #fff; }
+
+/* Card 5: Additional (Your Official Brand Gold Accent) */
+.scheme-gold .service-card__icon-badge { background-color: rgba(213, 154, 64, 0.12); color: #D59A40; }
+.scheme-gold:hover { border-color: #D59A40; }
+.scheme-gold:hover .service-card__icon-badge { background-color: #D59A40; color: #fff; }
+
+
+/* Service Headings */
 .service-card__heading {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-dark, #000);
-  text-align: center;
-  margin: 0 0 1.25rem 0;
-  line-height: 1.4;
-  min-height: 44px; /* Keeps headings aligned even if they break to 2 lines */
+  font-size: 1.05rem; 
+  font-weight: 700;
+  color: #1E2A2C; /* Anti-glare soft charcoal text color selection */
+  text-align: center !important; 
+  margin: 0 0 1.25rem 0; 
+  line-height: 1.35;
+  min-height: 54px; /* Perfectly locks row alignment baselines */
+  width: 100%;
 }
 
-/* Left-Aligned Lists */
+/* Scannable Custom Bullet Lists */
 .service-card__list {
-  margin: 0;
-  padding-left: 1.25rem; /* Indents the bullets neatly */
-  text-align: left;
-  list-style-type: disc;
+  margin: 0 auto; 
+  padding: 0;
+  width: 100%;
+  max-width: 240px; 
+  list-style: none; 
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
 }
 
 .service-card__list li {
-  color: #444;
-  line-height: 1.3;
-  margin-bottom: 0.75rem;
-  list-style: disc;
+  position: relative;
+  padding-left: 22px; 
+  color: #435153; 
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: left;
 }
 
-/* CTA Button Styling */
+/* Custom Checkmark Layer Setup */
+.service-card__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #D59A40; /* Your Brand Gold */
+  font-weight: 900;
+  font-size: 14px;
+}
+
+/* Anchor Attention Element: The Bold First Bullet Point */
+.service-card__list li.hero-item {
+  font-weight: 700 !important;
+  color: #164448 !important; /* Deepest crisp brand color shade instantly snaps the eyes to read */
+  font-size: 14px;
+}
+
+/* Bottom CTA Layout Block */
 .services-cta-container {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2.5rem; 
 }
 
-.services-cta-btn {
+/* Official Custom Brand Button */
+.services-custom-button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: #0f2d2a; /* Deep dark green background from image */
-  color: #fff;
-  padding: 0.75rem 2rem;
-  border-radius: 6px;
+  gap: 10px;
+  background-color: #2A787F; /* Official Brand Teal */
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 30px;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background 0.2s ease;
+  box-shadow: 0 4px 14px rgba(42, 120, 127, 0.25);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.services-cta-btn:hover {
-  background: #17443f;
+.services-custom-button i {
+  transition: transform 0.2s ease;
 }
 
+.services-custom-button:hover {
+  background-color: #164448; 
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(22, 68, 72, 0.35);
+  transform: translateY(-2px);
+}
 
-/* --- Responsive Breakpoints --- */
+.services-custom-button:hover i {
+  transform: translateX(4px); 
+}
 
-/* Tablets & Small Desktops (Stops the 5 columns from getting too squeezed) */
-@media (max-width: 1024px) {
+/* Keyboard tracking focus highlights for screen readers and adaptive switch kits */
+.service-card:focus-within {
+  outline: 3px solid #D59A40; 
+  outline-offset: 4px;
+}
+.services-custom-button:focus-visible {
+  outline: 3px solid #D59A40;
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1200px) {
   .services-container {
-    flex-wrap: wrap; /* Wraps to grid structure */
-}
-
-.service-card {
-    flex: 1 1 calc(33.33% - 1px); /* 3 items per row */
-    border-bottom: 0.5px solid var(--warm-tan, #e0dcd3);
-}
-
-/* Reset dynamic borders */
-.service-card:nth-child(3n) {
-    border-right: none;
-}
-}
-
-/* Small Tablets / Dual-Column Layout */
-@media (max-width: 768px) {
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 20px;
+  }
   .service-card {
-    flex: 1 1 calc(50% - 1px); /* 2 items per row */
+    flex: 0 1 calc(33.33% - 14px); 
+    min-width: 260px;
+  }
 }
 
-.service-card:nth-child(3n) {
-    border-right: 0.5px solid var(--warm-tan, #e0dcd3); /* Re-add */
+@media (max-width: 820px) {
+  .service-card {
+    flex: 0 1 calc(50% - 10px); 
+  }
 }
 
-.service-card:nth-child(2n) {
-    border-right: none; /* Strip every second item */
-}
-}
-
-/* Mobile Screens — Clean Vertical Stack */
-@media (max-width: 520px) {
+@media (max-width: 540px) {
   .services-section {
-    padding: 3rem 1rem;
-}
-
-.services-container {
+    padding: 1.5rem 0;
+  }
+  .services-container {
     flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .service-card {
+    width: 100%; 
+    padding: 2rem 1.5rem;
+  }
+  .service-card__heading {
+    min-height: auto; 
+  }
 }
-
-.service-card {
-    width: 100%;
-    border-right: none;
-    border-bottom: 0.5px solid var(--warm-tan, #e0dcd3);
-    padding: 2rem 1rem;
-}
-
-.service-card__heading {
-    min-height: auto; /* No longer needed when stacked vertically */
-}
-
-.service-card:last-child {
-    border-bottom: none;
-}
-}
+/*Our Services Cards*/
 
 /* Day Programs, Funding Options, Advocacy */
 /* Container Settings */
