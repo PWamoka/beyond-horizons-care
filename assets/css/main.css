@@ -8581,7 +8581,6 @@ div[class*="position"] .details .area {
 
 /* Main Section Wrapper */
 .services-section {
-  background-color: #F4F7F8; 
   padding: 2.5rem 0; 
   box-sizing: border-box;
   overflow-x: hidden; 
@@ -8846,7 +8845,7 @@ div[class*="position"] .details .area {
   flex: 1;
   display: flex;
   flex-direction: column; /* Stacks image on top, text on bottom */
-  height: 550px; /* Enforces absolute uniform height across columns */
+  height: 600px; /* Enforces absolute uniform height across columns */
   background-color: var(--warm-cream, #fbf9f4);
   border-radius: 12px;
   overflow: hidden;
@@ -8989,7 +8988,6 @@ div[class*="position"] .details .area {
 /*Where We Support*/
 /* Section Styles */
 .locations-section {
-  background: #fff;
   padding: 4rem 1.5rem;
   width: 100%;
 }
@@ -9471,7 +9469,8 @@ div[class*="position"] .details .area {
 
 
 
-/*Because being Seen Matters*/
+/*Because Being Seen Matters Section */
+/* Because being Seen Matters */
 /* ── Banner wrapper — full viewport width, no cap ── */
 .banner {
   position: relative;
@@ -9484,23 +9483,22 @@ div[class*="position"] .details .area {
 .banner__photo {
   position: absolute;
   inset: 0;
-  background:
-  url('../images/home/being-seen-matters.jpeg')
-  center center / cover no-repeat;
+  background: url('../images/home/being-seen-matters.jpeg') center center / cover no-repeat;
 }
 
-/* ── Solid-to-transparent gradient overlay ── */
+/* ── Solid-to-transparent gradient overlay (Expanded Solid Area) ── */
 .banner__gradient {
   position: absolute;
   inset: 0;
+  /* Pushed brand color far to the right, leaving only ~15% completely clear image */
   background: linear-gradient(
     to right,
     #378189 0%,
-    #378189 35%,
-    rgba(26, 64, 64, 0.85) 50%,
-    rgba(26, 64, 64, 0.35) 65%,
-    rgba(26, 64, 64, 0.0) 80%
-);
+    #378189 65%,                   /* WIDENED: Solid color coverage extended from 35% */
+    rgba(26, 64, 64, 0.9) 75%,      /* Shorter, sharper transition window */
+    rgba(26, 64, 64, 0.4) 85%,
+    rgba(26, 64, 64, 0.0) 90%       /* Image is only fully visible on the far right edge */
+  );
 }
 
 /* ── Text block ── */
@@ -9510,8 +9508,8 @@ div[class*="position"] .details .area {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(1rem, 4vw, 3.5rem);
-  gap: clamp(2px, 0.5vw, 8px);
+  padding: clamp(0.5rem, 2vw, 1.5rem); /* REDUCED: Trimmed down padding for a tighter look */
+  gap: clamp(2px, 0.3vw, 6px);
 }
 
 .banner__script {
@@ -9537,27 +9535,35 @@ div[class*="position"] .details .area {
     background: linear-gradient(
       to right,
       #378189 0%,
-      #378189 30%,
-      rgba(26, 64, 64, 0.82) 48%,
-      rgba(26, 64, 64, 0.3) 68%,
-      rgba(26, 64, 64, 0.0) 86%
-  );
-}
+      #378189 60%,
+      rgba(26, 64, 64, 0.9) 73%,
+      rgba(26, 64, 64, 0.4) 83%,
+      rgba(26, 64, 64, 0.0) 88%
+    );
+  }
+  .banner__text {
+    padding: 0.75rem 1rem; /* Compact layout pads for smaller screens */
+  }
 }
 
 /* ── Mobile ── */
 @media (max-width: 420px) {
   .banner__gradient {
+    /* Almost fully solid color on mobile screens to maintain contrast safety scales */
     background: linear-gradient(
       to right,
       #378189 0%,
-      #378189 28%,
-      rgba(26, 64, 64, 0.88) 46%,
-      rgba(26, 64, 64, 0.35) 66%,
-      rgba(26, 64, 64, 0.0) 84%
-  );
+      #378189 55%,
+      rgba(26, 64, 64, 0.92) 70%,
+      rgba(26, 64, 64, 0.5) 85%,
+      rgba(26, 64, 64, 0.0) 92%
+    );
+  }
+  .banner__text {
+    padding: 0.5rem 0.75rem;
+  }
 }
-}
+/*Because Being Seen Matters Section */
 
 
 /*Last Section Before Footer*/
@@ -9628,3 +9634,265 @@ div[class*="position"] .details .area {
     flex: 0 0 calc(50% - 24px);
 }
 }
+
+/*Our Services Section Scrolling Cards Carousel*/
+/* ==========================================================================
+   Continuous Sliding Batch Component - PWD Visual Mockup Config
+   ========================================================================== */
+
+.services-carousel-section {
+  padding: 4.5rem 0;
+  background-color: #FAF8F5; /* Matches the anti-glare warm cream texture in your image */
+  position: relative;
+  overflow: hidden;
+}
+
+.services-carousel__main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #112B2E; /* High-contrast off-black charcoal */
+  margin-bottom: 3.5rem;
+}
+
+/* Viewport layout wrapper */
+.services-carousel-viewport {
+  width: 100%;
+  overflow: hidden !important;
+  position: relative;
+  padding: 15px 0;
+  box-sizing: border-box;
+}
+
+/* Slide track setup */
+.services-carousel-track {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 16px; 
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Card Mockup Geometry: Fits exactly 5 items cleanly across the row */
+.services-carousel-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(17, 43, 46, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(17, 43, 46, 0.04);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+  /* DESKTOP DEFAULT: Exactly 5 cards fill the viewport row space */
+  flex: 0 0 calc((100% - (16px * 4)) / 5) !important;
+  min-width: calc((100% - (16px * 4)) / 5) !important;
+}
+
+/* OVERRIDE REMOVAL: Stripped out the old right-border divider rule to protect the new separate boxes */
+.services-carousel-card:nth-child(5),
+.services-carousel-card:nth-child(10) {
+  border-right: 1.5px solid rgba(17, 43, 46, 0.12) !important;
+}
+
+/* NEW HIGH-APPEAL HOVER EFFECT: Snaps focus instantly when pointed at */
+.services-carousel-card:hover {
+  border-color: #378189;
+  box-shadow: 0 8px 20px rgba(55, 129, 137, 0.12);
+  
+  /* Shadow deepens slightly and gains an elegant brand tint glow */
+  box-shadow: 0 8px 20px rgba(55, 129, 137, 0.12);
+  cursor: pointer;
+}
+
+.services-carousel-card:hover .services-vector-icon {
+  /* This CSS filter transforms your dark charcoal vector (#112B2E) into your brand teal (#378189). 
+    If you use your own colored SVGs directly, you can delete this filter line.
+  */
+  filter: invert(45%) sepia(19%) saturate(836%) hue-rotate(136deg) brightness(93%) contrast(85%);
+}
+
+
+/* ==========================================================================
+   Responsive Adaptations & Motion Mitigation Safeties
+   ========================================================================== */
+
+/* TABLET PROFILE: Fits exactly 2 cards cleanly side-by-side */
+@media (max-width: 1199px) {
+  .services-carousel-card {
+    flex: 0 0 calc((100% - 16px) / 2) !important;
+    min-width: calc((100% - 16px) / 2) !important;
+  }
+}
+
+/* MOBILE PROFILE: Card spans full viewport width for easy track reading */
+@media (max-width: 600px) {
+  .services-carousel-card {
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
+  }
+}
+
+/* Static fallback optimization safety layer for low-motion OS preferences */
+@media (prefers-reduced-motion: reduce) {
+  .services-carousel-track { transition: none !important; }
+}
+
+/* Enlarged Vector Icon Alignment Box */
+.services-carousel-card__icon-wrap {
+  width: 80px;               /* Maintains the custom 80px visual box footprint */
+  height: 80px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;     /* Kept exactly intact to preserve margins */
+  box-sizing: border-box;
+}
+
+/* Vector Image Explicit Scaling Rules */
+.services-vector-icon {
+  width: auto;
+  height: 54px;              /* Standardizes vector heights cleanly across all cards */
+  max-width: 100%;           /* Safety safeguard against image asset blowout bugs */
+  object-fit: contain;       /* Protects your vector's native aspect ratio boundaries */
+  
+  /* Smooth color interaction transition */
+  transition: filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.services-carousel-card__icon-wrap i {
+  font-size: 54px; /* Crisp vector scale match */
+  color: #112B2E;  /* High-contrast brand tone from image */
+}
+
+.services-carousel-card__title {
+  color: #112B2E;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 1.25rem 0;
+  line-height: 1.35;
+  min-height: 52px; /* Uniform grid structural locking baseline */
+}
+
+/* PWD-Compliant Left Aligned List Architecture */
+.services-carousel-card__bullet-list {
+  padding-left: 18px;
+  margin: 0;
+  text-align: left;
+  align-self: flex-start;
+  list-style-type: disc;
+}
+
+.services-carousel-card__bullet-list li {
+  font-size: 14.5px;
+  color: #2D3A42; /* Anti-glare deep contrast text color selection */
+  line-height: 1.5;
+  margin-bottom: 12px; /* Generous row gaps reduce visual distortion */
+}
+
+/* ==========================================================================
+   Enlarged Interface Navigation Controllers (PWD Friendly Click Domains)
+   ========================================================================== */
+
+.services-carousel-control {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 50px; /* ENLARGED: Expanded click area for motor control tools */
+  height: 50px;
+  background-color: #112B2E;
+  border: none;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(17, 43, 46, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.services-carousel-control i {
+  font-size: 16px;
+}
+
+.services-carousel-control:hover {
+  background-color: #378189; /* Shift feedback to teal accent */
+  transform: translateY(-50%) scale(1.05);
+}
+
+.services-carousel-control.prev { left: -25px; }
+.services-carousel-control.next { right: -25px; }
+
+/* Clear focus track guides for switch-kit and keyboard users */
+.services-carousel-control:focus-visible {
+  outline: 3px solid #378189;
+  outline-offset: 4px;
+}
+
+/* Premium Dark Brand Button (Directly from image snippet) */
+.services-carousel__explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #112B2E; 
+  color: #ffffff !important;
+  padding: 14px 32px;
+  border-radius: 6px; /* Block shape matching image profile */
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(17, 43, 46, 0.15);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.services-carousel__explore-btn:hover {
+  background-color: #378189;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Responsive Adaptations & Motion Mitigation Safeties
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .services-carousel-card {
+    flex: 0 0 calc((100% - (16px * 2)) / 3); /* 3 cards layout on laptop screen widths */
+  }
+}
+
+@media (max-width: 768px) {
+  .services-carousel-card {
+    flex: 0 0 calc((100% - 16px) / 2); /* 2 cards layout split on tablet screens */
+    border-right: none;
+  }
+  .services-carousel-control.prev { left: -12px; }
+  .services-carousel-control.next { right: -12px; }
+}
+
+@media (max-width: 540px) {
+  .services-carousel-card {
+    flex: 0 0 100%; /* Clean single item display focus path on mobile viewports */
+  }
+}
+
+/* Motion Safeguard rule integration */
+@media (prefers-reduced-motion: reduce) {
+  .services-carousel-track {
+    transition: none !important;
+  }
+  .services-carousel-control:hover,
+  .services-carousel__explore-btn:hover {
+    transform: translateY(-50%) !important;
+  }
+  .services-carousel__explore-btn:hover {
+    transform: none !important;
+  }
+}
+/*Our Services Section Scrolling Cards Carousel*/
